@@ -25,23 +25,29 @@
 \end{centering}
 
 The Spiral model of software development is a lifecycle which is intended for large, expensive and
-complicated projects, explicitly including risk management as part of the development process. 
-Figure~\ref{fig:spiral} depicts the overall process of the spiral model.
+complicated projects, explicitly including risk management as part of the development process.
 
-\begin{figure}[h]
-\centering
-\includegraphics[width=0.4\textwidth]{img/spiral}
-\caption{Spiral model of the software process\cite{59}}\label{fig:spiral}
-\end{figure}
+%\begin{figure}[h]
+%\centering
+%\includegraphics[width=0.4\textwidth]{img/spiral}
+%\caption{Spiral model of the software process\cite{59}}\label{fig:spiral}
+%\end{figure}
 
-Formal Methods of software development have many different flavours but focus upon proving the
-correctness of the produced software, typically through application of mathematical specification.
-Formal Methods are very useful for safety- or mission- critical systems; where traditional methods
-would have to rely on large amounts of testing.
+Formal Methods of software development have many different flavours but focus upon proving that a
+piece of software satisfies a (formal) specification, typically this specification has a 
+mathematical form. Formal Methods are very useful for safety- or mission- critical systems; where
+traditional methods would have to rely on large amounts of testing.
+
+It should be pointed out that formal methods do not prove that a program is correct; the methods
+only focus on satisfying the specification. If the specification is sufficiently detailed to
+ensure the software is correct then it should follow that the formal methods will ensure the
+software is correct as well.
 
 Both methods start similarly; gathering requirements for the system. However the Spiral model 
 focuses on both requirements and risk analysis whereas Formal Methods these requirements are used
-to build an abstract specification.
+to build an abstract specification.\\
+
+\subsection*{The Vienna Development Model}
 
 This report will focus on the Vienna Development Model (VDM) as the model for a Formal Development
 Method, however that are many others with different syntax or structures.
@@ -52,28 +58,27 @@ the implicit specification of functions and operations.
 
 The first change that would need to be made is to build this abstract specification based on the
 requirements, defining the data types and operations which are needed to complete the system.
+Included in these data types are the data type \emph{invariants}; conditions which can relied 
+upon to be true.
 
-From this the first reification step is taken; each of these steps involve:
+Along with these data types some theory is also developed, for example if a set within the data
+type must have at least one element in it a theory or \emph{lemma} is defined.
 
-\begin{enumerate}
-\item From the abstract data type specification $ABS$ find a new representation $REP$
-\item Find a \emph{retrieve function} that relates $ABS$ to $REP$ 
-%($retr: REP \rightarrow ABS$)
-\item Prove that $REP$ is \emph{adequate} to represent $ABS$ 
-%(prove $\forall a \in ABS \bullet \exists r \in REP \bullet a = retr(r)$)
-\item Re-write functions and operations in terms of $REP$.
-\item Prove that these new functions and operations preserve any data-type invariants of $REP$.
-\item Prove that these new functions and operations model those of the original specification:
-\begin{itemize}
-\item Prove that preconditions for operation $OPA$ on $ABS$ returns the same results on 
-$REP$
-%:  $\forall r \in REP \bullet \mathtt{pre-}OPA(retr(r)) \Rightarrow \mathtt{pre-}OPA(r)$
-\item Prove that the postconditions for operations $OPA$ on $ABS$ return the same results on $REP$
-given that the preconditions were met
-%: $\forall \overleftharp{r}, r \in REP \bullet \texttt{pre-}OPA(retr(\overleftharp{r})) \land \texttt{post-}OPA(\overleftharp{r},r) \Rightarrow \texttt{post-}OPA(retr(\overleftharp{r}), retr(r))$
-\end{itemize}
-\end{enumerate}
+With these data types defined the set of operations which need to be performed on them are also
+defined. These operations can have both pre- and post- conditions associated with them.
 
+
+
+
+\subsection*{Tool Support}
+A number of tools exist to support the conversion of VDM and VDM++ to different languages, 
+including Java and C++. VDMTools is one of the leading commercial tools for this area and involves
+defining the specification in a text format. VDMTools includes parsers to check both syntax and 
+(data) types.
+
+VDMTools also includes ways of performing tests on the specification to ensure that the invariants
+and operations are actually defined correctly, these act somewhat similarly to how unit testing
+would be performed.
 
 
 \bibliographystyle{plain}
