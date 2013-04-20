@@ -68,6 +68,22 @@ With these data types defined the set of operations which need to be performed o
 defined. These operations can have both pre- and post- conditions associated with them.
 
 
+\subsection*{Issues with Moving to a Formal Development Method}
+Formal development methods typically require markedly different skill set from traditional 
+software development, a heavy knowledge of mathematics; particularly set theory and logic; is
+required to be able to write the formal specifications on which code is built to fulfil.
+
+Another major problem will be the programming language used to implement the formal specification:
+this language should need to be formally proved itself otherwise the software is being built on an
+unsound base.
+
+One major issue with formal methods is the significant time investment needed to build the formal 
+specification, when done by hand it is a very time consuming process and is very prone to human
+error. If checked by a tool or `verifier' then there is the inherent problem of proving that the
+verifier is performing its job correctly.
+
+It should be reiterated that formal methods should only be realistically considered for software
+which is either mission- or safety- critical.
 
 
 \subsection*{Tool Support}
